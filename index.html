@@ -164,7 +164,7 @@ function renderProductos(){
   }).join("");
 
   const otrosField = state.newSupers["Otros"]
-    ? `<input class="input input-otros" placeholder="¿Cuál? (Eroski, Lidl…)" value="${esc(state.newOtros)}" oninput="state.newOtros=this.value" style="margin-bottom:12px;">`
+    ?       `<input class="input input-otros" id="inp-otros" placeholder="¿Cuál? (Eroski, Lidl…)" value="${esc(state.newOtros)}" oninput="state.newOtros=this.value" style="margin-bottom:12px;">`
     : "";
 
   const rows = filtered.length===0
@@ -192,14 +192,14 @@ function renderProductos(){
     </div>
     <div class="card">
       <div class="card-label">Añadir producto</div>
-      <input class="input" placeholder="Nombre del producto…" value="${esc(state.newName)}"
-        oninput="state.newName=this.value;renderContent()"
+      <input class="input" id="inp-name" placeholder="Nombre del producto…" value="${esc(state.newName)}"
+        oninput="state.newName=this.value"
         onkeydown="if(event.key==='Enter')addProd()"
         style="margin-bottom:12px;">
       <div style="font-size:12px;color:#aaa;margin-bottom:8px;">¿Dónde se compra?</div>
       <div class="supers-grid">${chips}</div>
       ${otrosField}
-      <button class="btn-add" style="background:${canAdd?"#c8a825":"#e0dbd0"}" ${canAdd?"":"disabled"} onclick="addProd()">+ Añadir producto</button>
+      <button class="btn-add" style="background:#c8a825" onclick="addProd()">+ Añadir producto</button>
     </div>
     <div class="search-wrap">
       <span class="ico">🔍</span>
