@@ -7,11 +7,11 @@
 <title>Lista de la Compra</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#faf9f5;min-height:100vh;color:#1e1e1e;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#faf9f5;min-height:100vh;}
   .app{max-width:500px;margin:0 auto;}
 
   .header{background:#fff;border-bottom:1px solid #ede9de;padding:18px 20px 0;position:sticky;top:0;z-index:10;box-shadow:0 1px 8px rgba(0,0,0,.05);}
-  .header h1{font-size:19px;font-weight:700;letter-spacing:-.3px;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .header h1{font-size:19px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
   .tabs{display:flex;overflow-x:auto;scrollbar-width:none;margin-bottom:-1px;}
   .tabs::-webkit-scrollbar{display:none;}
   .tab-btn{background:none;border:none;padding:8px 13px;font-size:13px;font-weight:500;color:#999;border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;}
@@ -26,28 +26,30 @@
   .input-otros{border-color:#c2b5f0;background:#f5f3fd;}
 
   .search-wrap{position:relative;margin-bottom:10px;}
-  .search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#bbb;font-size:15px;pointer-events:none;}
+  .search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#bbb;pointer-events:none;}
   .search-wrap .input{padding-left:36px;background:#fff;}
 
   .supers-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}
-  .super-chip{display:flex;align-items:center;gap:6px;border:1.5px solid #e0dbd0;border-radius:9px;padding:7px 12px;background:#faf9f5;cursor:pointer;transition:all .15s;font-size:13px;font-weight:500;color:#999;user-select:none;}
-  .chip-box{width:14px;height:14px;border-radius:4px;border:1.5px solid #ccc;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .chip-check{color:#fff;font-size:10px;line-height:1;}
+  .super-chip{display:flex;align-items:center;gap:6px;border:1.5px solid #e0dbd0;border-radius:9px;padding:7px 12px;background:#faf9f5;cursor:pointer;font-size:13px;font-weight:500;color:#999;user-select:none;}
+  .chip-box{width:14px;height:14px;border-radius:4px;border:1.5px solid #ccc;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-  .btn{border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13px;cursor:pointer;color:#fff;font-family:inherit;transition:background .15s;}
-  .btn-gold{background:#c8a825;width:100%;padding:11px;}
-  .btn-gold:disabled{background:#e0dbd0;cursor:not-allowed;}
-
+  .btn-gold{width:100%;border:none;border-radius:10px;padding:11px;font-weight:700;font-size:14px;cursor:pointer;color:#fff;background:#c8a825;font-family:inherit;}
   .backup-bar{display:flex;gap:8px;margin-bottom:14px;}
-  .btn-backup{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:#fff;border:1.5px solid #e4dfd2;border-radius:10px;padding:10px;font-size:13px;font-weight:600;color:#555;cursor:pointer;font-family:inherit;}
+  .btn-backup{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff;border:1.5px solid #e4dfd2;border-radius:10px;padding:10px;font-size:13px;font-weight:600;color:#555;cursor:pointer;font-family:inherit;}
 
-  /* Catálogo row */
-  .prod-row{background:#fff;border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:10px;border:1px solid #ede9de;box-shadow:0 1px 3px rgba(0,0,0,.03);margin-bottom:7px;}
-  .badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+  /* Fila de producto en catálogo */
+  .prod-row{background:#fff;border-radius:11px;padding:11px 12px;display:flex;align-items:center;gap:10px;border:1px solid #ede9de;margin-bottom:7px;box-shadow:0 1px 3px rgba(0,0,0,.03);}
+  .prod-info{flex:1;min-width:0;}
+  .prod-name{font-size:14px;font-weight:500;color:#1e1e1e;}
+  .badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
   .badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;border:1px solid;}
-  .btn-del{background:none;border:none;color:#ccc;font-size:20px;cursor:pointer;padding:0;line-height:1;flex-shrink:0;}
 
-  /* Super header */
+  /* Botón + / añadido */
+  .btn-plus{width:32px;height:32px;border-radius:50%;border:2px solid #d0c9b8;background:#fff;font-size:18px;line-height:1;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#bbb;transition:all .15s;font-family:inherit;}
+  .btn-plus.added{border:none;font-size:16px;}
+  .btn-del{background:none;border:none;color:#ddd;font-size:19px;cursor:pointer;padding:0 0 0 4px;line-height:1;flex-shrink:0;}
+
+  /* Super tab */
   .super-header{border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;border:1.5px solid;}
   .super-title{font-size:17px;font-weight:800;}
   .super-sub{font-size:12px;opacity:.75;margin-top:3px;}
@@ -55,24 +57,17 @@
   .progress-bar{height:100%;border-radius:4px;transition:width .3s;}
   .btn-clear{border:none;border-radius:9px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;color:#fff;font-family:inherit;}
 
-  /* Shopping rows — en lista */
-  .shop-row{background:#fff;border-radius:11px;padding:13px 16px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:all .15s;box-shadow:0 1px 3px rgba(0,0,0,.03);margin-bottom:7px;border:1px solid;}
-  .shop-row.done{background:#f7f6f2;box-shadow:none;border-color:#e8e4da !important;}
-  .chk-box{width:22px;height:22px;border-radius:6px;flex-shrink:0;border:2px solid #ddd;background:transparent;display:flex;align-items:center;justify-content:center;}
+  /* Fila en super */
+  .shop-row{border-radius:11px;padding:13px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:7px;border:1px solid;transition:background .1s;}
+  .shop-row.pending{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.03);}
+  .shop-row.done{background:#f7f6f2;border-color:#e8e4da !important;}
+  .chk-box{width:22px;height:22px;border-radius:6px;flex-shrink:0;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;}
   .chk-mark{color:#fff;font-size:13px;line-height:1;}
   .shop-name{font-size:14px;font-weight:500;flex:1;}
-  .shop-name.done{color:#aaa;text-decoration:line-through;}
-  .btn-remove{background:none;border:none;color:#ddd;font-size:18px;cursor:pointer;padding:0 0 0 6px;line-height:1;flex-shrink:0;}
-
-  /* Catálogo picker en super tab */
-  .section-title{font-size:11px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.6px;margin:16px 0 8px;}
-  .catalog-row{background:#fff;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:12px;border:1px solid #ede9de;margin-bottom:6px;cursor:pointer;transition:all .15s;}
-  .catalog-row:active{background:#f5f5f0;}
-  .plus-circle{width:24px;height:24px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#bbb;line-height:1;}
-  .catalog-name{font-size:14px;color:#777;flex:1;}
+  .shop-name.done{color:#bbb;text-decoration:line-through;}
 
   .divider{font-size:11px;color:#bbb;text-align:center;margin:4px 0 11px;text-transform:uppercase;letter-spacing:.5px;}
-  .empty{text-align:center;padding:40px 20px;color:#ccc;font-size:14px;line-height:1.8;}
+  .empty{text-align:center;padding:40px 20px;color:#ccc;font-size:14px;line-height:2;}
   .count{font-size:12px;color:#bbb;padding-left:2px;margin-bottom:8px;}
 </style>
 </head>
@@ -85,10 +80,10 @@
   <div class="content" id="content"></div>
 </div>
 <script>
-const SUPERS = ["Caprabo","BonArea","Día","Mercadona","Otros"];
-const TABS   = ["Productos",...SUPERS];
-const EMOJI  = {Caprabo:"🔵",BonArea:"🟠",Día:"🔴",Mercadona:"🟢",Otros:"🟣"};
-const C = {
+const SUPERS=["Caprabo","BonArea","Día","Mercadona","Otros"];
+const TABS=["Productos",...SUPERS];
+const EMOJI={Caprabo:"🔵",BonArea:"🟠",Día:"🔴",Mercadona:"🟢",Otros:"🟣"};
+const C={
   Caprabo:  {bg:"#e8f0fa",text:"#004B9E",dot:"#004B9E",border:"#b3ccee"},
   BonArea:  {bg:"#fff0e0",text:"#c45e00",dot:"#E87722",border:"#f5c990"},
   Día:      {bg:"#fde8e8",text:"#b50012",dot:"#E30016",border:"#f5aaaa"},
@@ -96,160 +91,131 @@ const C = {
   Otros:    {bg:"#ede9fb",text:"#4a35a0",dot:"#6c52d9",border:"#c2b5f0"},
 };
 
-// productos: [{id, name, supers[], otrosText}]
-// listed:    {id: true}  → producto añadido a la lista de esta semana
-// checked:   {id: true}  → producto ya metido en el carrito
-let state = {
-  tab:"Productos",
-  productos:[],
-  listed:{},   // en la lista de la compra activa
-  checked:{},  // marcado como cogido
-  newName:"", newSupers:{}, newOtros:"",
-  search:""
-};
+// listed: {id: true}  → está en la lista de compra pendiente
+// checked:{id: true}  → ya cogido en el super
+let S={tab:"Productos",productos:[],listed:{},checked:{},newName:"",newSupers:{},newOtros:"",search:""};
 
 function save(){
-  localStorage.setItem("lc-v2-prods",   JSON.stringify(state.productos));
-  localStorage.setItem("lc-v2-listed",  JSON.stringify(state.listed));
-  localStorage.setItem("lc-v2-checked", JSON.stringify(state.checked));
+  localStorage.setItem("lc3-prods",  JSON.stringify(S.productos));
+  localStorage.setItem("lc3-listed", JSON.stringify(S.listed));
+  localStorage.setItem("lc3-checked",JSON.stringify(S.checked));
 }
 function load(){
-  try{ state.productos = JSON.parse(localStorage.getItem("lc-v2-prods")||"[]"); }catch{}
-  try{ state.listed    = JSON.parse(localStorage.getItem("lc-v2-listed")||"{}"); }catch{}
-  try{ state.checked   = JSON.parse(localStorage.getItem("lc-v2-checked")||"{}"); }catch{}
-  // migración desde versión anterior
-  if(!state.productos.length){
-    try{
-      const old = JSON.parse(localStorage.getItem("lc-productos2")||"[]");
-      if(old.length){ state.productos = old; save(); }
-    }catch{}
+  try{S.productos=JSON.parse(localStorage.getItem("lc3-prods")||"[]");}catch{}
+  try{S.listed   =JSON.parse(localStorage.getItem("lc3-listed")||"{}");}catch{}
+  try{S.checked  =JSON.parse(localStorage.getItem("lc3-checked")||"{}");}catch{}
+  // migración versiones anteriores
+  if(!S.productos.length){
+    for(const k of["lc-v2-prods","lc-productos2"]){
+      try{const d=JSON.parse(localStorage.getItem(k)||"[]");if(d.length){S.productos=d;save();break;}}catch{}
+    }
   }
 }
 
-/* ── RENDER ── */
-function render(){ renderTabs(); renderContent(); }
+function render(){renderTabs();renderContent();}
 
 function renderTabs(){
-  document.getElementById("tabs").innerHTML = TABS.map(t=>{
-    const col = t==="Productos"?"#c8a825":C[t].dot;
-    const act = state.tab===t;
-    // badge con número de items en lista para supers
-    let badge = "";
+  document.getElementById("tabs").innerHTML=TABS.map(t=>{
+    const col=t==="Productos"?"#c8a825":C[t].dot;
+    const act=S.tab===t;
+    let badge="";
     if(t!=="Productos"){
-      const n = state.productos.filter(p=>p.supers.includes(t)&&state.listed[p.id]&&!state.checked[p.id]).length;
-      if(n) badge = ` <span style="background:${C[t].dot};color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700">${n}</span>`;
+      const n=S.productos.filter(p=>p.supers.includes(t)&&S.listed[p.id]&&!S.checked[p.id]).length;
+      if(n) badge=` <span style="background:${C[t].dot};color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700">${n}</span>`;
     }
     return `<button class="tab-btn${act?" active":""}" style="color:${act?col:"#999"};border-bottom-color:${act?col:"transparent"}" onclick="setTab('${t}')">${t}${badge}</button>`;
   }).join("");
 }
 
 function renderContent(){
-  document.getElementById("content").innerHTML =
-    state.tab==="Productos" ? tplProductos() : tplSuper(state.tab);
+  document.getElementById("content").innerHTML=S.tab==="Productos"?tplProductos():tplSuper(S.tab);
 }
 
-/* ── PESTAÑA PRODUCTOS (catálogo) ── */
+/* ── PESTAÑA PRODUCTOS ── */
 function tplProductos(){
-  const chips = SUPERS.map(s=>{
-    const a = !!state.newSupers[s];
-    return `<div class="super-chip${a?"":" "}" style="${a?`border-color:${C[s].dot};background:${C[s].bg};color:${C[s].text}`:""}" onclick="toggleChip('${s}')">
+  const chips=SUPERS.map(s=>{
+    const a=!!S.newSupers[s];
+    return `<div class="super-chip" style="${a?`border-color:${C[s].dot};background:${C[s].bg};color:${C[s].text}`:""}" onclick="toggleChip('${s}')">
       <div class="chip-box" style="${a?`background:${C[s].dot};border:none`:""}">
-        ${a?`<span class="chip-check">✓</span>`:""}
+        ${a?`<span style="color:#fff;font-size:10px">✓</span>`:""}
       </div>
       ${EMOJI[s]} ${s}</div>`;
   }).join("");
 
-  const otrosField = state.newSupers["Otros"]
-    ? `<input id="inp-otros" class="input input-otros" placeholder="¿Cuál? (Eroski, Lidl…)" value="${esc(state.newOtros)}" oninput="state.newOtros=this.value" style="margin-bottom:12px;">`
-    : "";
+  const otrosField=S.newSupers["Otros"]
+    ?`<input id="inp-otros" class="input input-otros" placeholder="¿Cuál? (Eroski, Lidl…)" value="${esc(S.newOtros)}" oninput="S.newOtros=this.value" style="margin-bottom:12px;">`:""
 
-  const filtered = state.productos
-    .filter(p=>p.name.toLowerCase().includes(state.search.toLowerCase()))
+  const filtered=S.productos
+    .filter(p=>p.name.toLowerCase().includes(S.search.toLowerCase()))
     .sort((a,b)=>a.name.localeCompare(b.name));
 
-  const rows = filtered.length===0
-    ? `<div class="empty">${state.productos.length===0?"Añade tus productos habituales 👆":"Sin resultados"}</div>`
-    : filtered.map(p=>{
-        const bs = p.supers.map(s=>{
-          const lbl = s==="Otros"&&p.otrosText?`Otros: ${p.otrosText}`:s;
-          return `<span class="badge" style="background:${C[s].bg};color:${C[s].text};border-color:${C[s].border}">${lbl}</span>`;
-        }).join("");
-        return `<div class="prod-row">
-          <span style="font-size:17px;flex-shrink:0">🏷️</span>
-          <div style="flex:1;min-width:0">
-            <span style="font-size:14px;font-weight:500">${esc(p.name)}</span>
-            <div class="badges">${bs}</div>
-          </div>
-          <button class="btn-del" onclick="delProd(${p.id})">×</button>
-        </div>`;
+  const rows=filtered.length===0
+    ?`<div class="empty">${S.productos.length===0?"Añade tus productos habituales 👆":"Sin resultados"}</div>`
+    :filtered.map(p=>{
+      const inList=!!S.listed[p.id];
+      const bs=p.supers.map(s=>{
+        const lbl=s==="Otros"&&p.otrosText?`Otros: ${p.otrosText}`:s;
+        return `<span class="badge" style="background:${C[s].bg};color:${C[s].text};border-color:${C[s].border}">${lbl}</span>`;
       }).join("");
+      const btnStyle=inList?`background:${p.supers.length===1?C[p.supers[0]].dot:"#c8a825"};color:#fff;border-color:transparent`:"";
+      return `<div class="prod-row">
+        <button class="btn-plus${inList?" added":""}" style="${btnStyle}" onclick="toggleListed(${p.id})" title="${inList?"Quitar de la lista":"Añadir a la lista"}">
+          ${inList?"✓":"+"}
+        </button>
+        <div class="prod-info">
+          <div class="prod-name">${esc(p.name)}</div>
+          <div class="badges">${bs}</div>
+        </div>
+        <button class="btn-del" onclick="delProd(${p.id})">×</button>
+      </div>`;
+    }).join("");
+
+  const pendingCount=S.productos.filter(p=>S.listed[p.id]).length;
 
   return `
     <div class="backup-bar">
-      <button class="btn-backup" onclick="exportB()">⬇️ Exportar backup</button>
-      <label class="btn-backup">⬆️ Importar backup<input type="file" accept=".json" style="display:none" onchange="importB(event)"></label>
+      <button class="btn-backup" onclick="exportB()">⬇️ Exportar</button>
+      <label class="btn-backup">⬆️ Importar<input type="file" accept=".json" style="display:none" onchange="importB(event)"></label>
     </div>
     <div class="card">
       <div class="card-label">Añadir al catálogo</div>
-      <input class="input" id="inp-name" placeholder="Nombre del producto…" value="${esc(state.newName)}"
-        oninput="state.newName=this.value"
+      <input class="input" id="inp-name" placeholder="Nombre del producto…" value="${esc(S.newName)}"
+        oninput="S.newName=this.value"
         onkeydown="if(event.key==='Enter')addProd()"
         style="margin-bottom:12px;">
       <div style="font-size:12px;color:#aaa;margin-bottom:8px;">¿Dónde se compra?</div>
       <div class="supers-grid">${chips}</div>
       ${otrosField}
-      <button class="btn btn-gold" onclick="addProd()">+ Añadir al catálogo</button>
+      <button class="btn-gold" onclick="addProd()">+ Añadir al catálogo</button>
     </div>
     <div class="search-wrap">
       <span class="search-ico">🔍</span>
-      <input class="input" placeholder="Buscar en catálogo…" value="${esc(state.search)}" oninput="state.search=this.value;renderContent()">
+      <input class="input" placeholder="Buscar…" value="${esc(S.search)}" oninput="S.search=this.value;renderContent()">
     </div>
-    <div class="count">${filtered.length} ${filtered.length===1?"producto":"productos"} en el catálogo</div>
+    ${pendingCount?`<div class="count" style="color:#c8a825;font-weight:600">✓ ${pendingCount} producto${pendingCount!==1?"s":""} en la lista de compra</div>`:`<div class="count">${filtered.length} productos en el catálogo</div>`}
     ${rows}`;
 }
 
 /* ── PESTAÑA SUPER ── */
 function tplSuper(name){
-  const col = C[name];
-  // todos los productos del catálogo de este super
-  const all     = state.productos.filter(p=>p.supers.includes(name));
-  const inList  = all.filter(p=> state.listed[p.id]);
-  const notList = all.filter(p=>!state.listed[p.id]);
-  const pending = inList.filter(p=>!state.checked[p.id]);
-  const done    = inList.filter(p=> state.checked[p.id]);
-  const pct     = inList.length ? (done.length/inList.length*100) : 0;
+  const col=C[name];
+  const inList=S.productos.filter(p=>p.supers.includes(name)&&S.listed[p.id]);
+  const pending=inList.filter(p=>!S.checked[p.id]);
+  const done   =inList.filter(p=> S.checked[p.id]);
+  const pct=inList.length?(done.length/inList.length*100):0;
 
-  const clearBtn = done.length
-    ? `<button class="btn-clear" style="background:${col.dot}" onclick="clearSuper('${name}')">Limpiar ✓</button>` : "";
+  const clearBtn=done.length
+    ?`<button class="btn-clear" style="background:${col.dot}" onclick="clearSuper('${name}')">Limpiar ✓</button>`:"";
 
-  const shopRow = (p, isDone) => {
-    const lbl = name==="Otros"&&p.otrosText?`${esc(p.name)} · ${esc(p.otrosText)}`:esc(p.name);
-    return `<div class="shop-row${isDone?" done":""}" style="border-color:${isDone?"#e8e4da":col.border}" onclick="toggleCheck(${p.id})">
+  const row=(p,isDone)=>{
+    const lbl=name==="Otros"&&p.otrosText?`${esc(p.name)} · ${esc(p.otrosText)}`:esc(p.name);
+    return `<div class="shop-row ${isDone?"done":"pending"}" style="border-color:${col.border}" onclick="toggleCheck(${p.id})">
       <div class="chk-box" style="${isDone?`background:${col.dot};border:none`:""}">
         ${isDone?`<span class="chk-mark">✓</span>`:""}
       </div>
       <span class="shop-name${isDone?" done":""}">${lbl}</span>
-      <button class="btn-remove" title="Quitar de la lista" onclick="event.stopPropagation();removeListed(${p.id})">−</button>
     </div>`;
   };
-
-  const catalogRow = p => {
-    const lbl = name==="Otros"&&p.otrosText?`${esc(p.name)} · ${esc(p.otrosText)}`:esc(p.name);
-    return `<div class="catalog-row" onclick="addListed(${p.id})">
-      <div class="plus-circle">+</div>
-      <span class="catalog-name">${lbl}</span>
-    </div>`;
-  };
-
-  const listaSection = inList.length===0
-    ? `<div class="empty" style="padding:24px 20px">Toca un producto de abajo para añadirlo a la lista 👇</div>`
-    : pending.map(p=>shopRow(p,false)).join("")
-      + (done.length&&pending.length?`<div class="divider">— en el carrito —</div>`:"")
-      + done.map(p=>shopRow(p,true)).join("");
-
-  const catalogSection = notList.length===0 ? "" : `
-    <div class="section-title">📦 Catálogo — toca para añadir a la lista</div>
-    ${notList.map(catalogRow).join("")}`;
 
   return `
     <div class="super-header" style="background:${col.bg};border-color:${col.border}">
@@ -260,85 +226,82 @@ function tplSuper(name){
       </div>
       ${clearBtn}
     </div>
-    ${all.length===0
-      ? `<div class="empty">No hay productos de ${name} en el catálogo.<br><span style="font-size:12px">Añádelos desde la pestaña Productos.</span></div>`
-      : listaSection + catalogSection}`;
+    ${inList.length===0
+      ?`<div class="empty">Nada pendiente de ${name}.<br><span style="font-size:12px">Añade productos a la lista desde la pestaña Productos.</span></div>`
+      :pending.map(p=>row(p,false)).join("")
+       +(done.length&&pending.length?`<div class="divider">— en el carrito —</div>`:"")
+       +done.map(p=>row(p,true)).join("")
+    }`;
 }
 
 /* ── ACCIONES ── */
-function setTab(t){ state.tab=t; render(); }
+function setTab(t){S.tab=t;render();}
 
 function toggleChip(s){
-  state.newSupers[s]=!state.newSupers[s];
-  if(!state.newSupers["Otros"]) state.newOtros="";
+  S.newSupers[s]=!S.newSupers[s];
+  if(!S.newSupers["Otros"])S.newOtros="";
   renderContent();
 }
 
 function addProd(){
-  const name = state.newName.trim();
-  const supers = SUPERS.filter(s=>state.newSupers[s]);
-  if(!name||!supers.length) return;
-  state.productos.push({id:Date.now(),name,supers,otrosText:state.newSupers["Otros"]?state.newOtros.trim():""});
-  state.newName=""; state.newSupers={}; state.newOtros="";
-  save(); renderContent();
+  const name=S.newName.trim();
+  const supers=SUPERS.filter(s=>S.newSupers[s]);
+  if(!name||!supers.length)return;
+  S.productos.push({id:Date.now(),name,supers,otrosText:S.newSupers["Otros"]?S.newOtros.trim():""});
+  S.newName="";S.newSupers={};S.newOtros="";
+  save();renderContent();
 }
 
 function delProd(id){
-  state.productos=state.productos.filter(p=>p.id!==id);
-  delete state.listed[id]; delete state.checked[id];
-  save(); renderContent();
+  S.productos=S.productos.filter(p=>p.id!==id);
+  delete S.listed[id];delete S.checked[id];
+  save();renderContent();
 }
 
-function addListed(id){
-  state.listed[id]=true;
-  delete state.checked[id];
-  save(); renderContent();
-}
-
-function removeListed(id){
-  delete state.listed[id]; delete state.checked[id];
-  save(); renderContent();
+function toggleListed(id){
+  if(S.listed[id]){delete S.listed[id];delete S.checked[id];}
+  else S.listed[id]=true;
+  save();render(); // render completo para actualizar badges de tabs
 }
 
 function toggleCheck(id){
-  state.checked[id]=!state.checked[id];
-  save(); renderContent();
+  S.checked[id]=!S.checked[id];
+  save();renderContent();
 }
 
 function clearSuper(name){
-  state.productos.filter(p=>p.supers.includes(name)&&state.listed[p.id]).forEach(p=>{
-    delete state.listed[p.id]; delete state.checked[p.id];
+  S.productos.filter(p=>p.supers.includes(name)&&S.listed[p.id]).forEach(p=>{
+    delete S.listed[p.id];delete S.checked[p.id];
   });
-  save(); renderContent();
+  save();render();
 }
 
-/* ── BACKUP ── */
 function exportB(){
-  const d = JSON.stringify({productos:state.productos,exportedAt:new Date().toISOString()},null,2);
-  const a = document.createElement("a");
+  const d=JSON.stringify({productos:S.productos,exportedAt:new Date().toISOString()},null,2);
+  const a=document.createElement("a");
   a.href="data:application/json;charset=utf-8,"+encodeURIComponent(d);
   a.download=`lista-compra-${new Date().toISOString().slice(0,10)}.json`;
   a.click();
 }
 function importB(e){
-  const f=e.target.files[0]; if(!f) return;
+  const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
   r.onload=ev=>{
     try{
       const p=JSON.parse(ev.target.result);
       const imp=p.productos||p;
-      if(!Array.isArray(imp)) throw 0;
-      if(confirm(`¿Importar ${imp.length} productos? Se reemplazará el catálogo actual.`)){
-        state.productos=imp; save(); renderContent();
+      if(!Array.isArray(imp))throw 0;
+      if(confirm(`¿Importar ${imp.length} productos? Se reemplazará el catálogo.`)){
+        S.productos=imp;save();renderContent();
       }
-    }catch{ alert("Archivo no válido."); }
+    }catch{alert("Archivo no válido.");}
   };
-  r.readAsText(f); e.target.value="";
+  r.readAsText(f);e.target.value="";
 }
 
-function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
-load(); render();
+load();render();
 </script>
 </body>
 </html>
